@@ -12,6 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
+      <main className='absolute bg-white h-48 w-full top-11'>
+        
+      </main>
     </div>
   )
 }
