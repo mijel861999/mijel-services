@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useWindowDimensions from '../hooks/useWindowDimensions'
 import { AiOutlineDisconnect } from 'react-icons/ai'
 
 const NavbarOptions = () => (
   <ul className='tablet:flex phone:hidden justify-around px-20 text-white text-sm'>
-    <li className='flex justify-center items-center'>
+    <li className='flex justify-center items-center text-xl'>
       <a href='/'><AiOutlineDisconnect /></a>
     </li> 
     <li>
@@ -14,6 +14,26 @@ const NavbarOptions = () => (
       <a href='/'>Nosotros</a>
     </li>
     <li>
+      <a href='/'>Redes Sociales</a>
+    </li>
+  </ul>
+)
+
+const NavbarOptionsPhones = ({ setIsOpen, isOpen }) => (
+  <ul className='tablet:hidden phone:flex-row justify-around pt-1 text-white text-sm'>
+    <div className='border border-white rounded-full w-6 h-6 flex justify-center items-center'>
+      <button onClick={() => setIsOpen(!isOpen)}>x</button>
+    </div>
+    <li className='my-1'>
+      <a href='/'>Inicio</a>
+    </li> 
+    <li className='my1'>
+      <a href='/'>Servicios</a>
+    </li>
+    <li className='my-1'>
+      <a href='/'>Nosotros</a>
+    </li>
+    <li className='my-1'>
       <a href='/'>Redes Sociales</a>
     </li>
   </ul>
@@ -44,6 +64,16 @@ const HamburguerOptions = ({ setIsOpen, isOpen }) => (
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
+  const { width, height } = useWindowDimensions()
+
+  console.log(width, height)
+
+  useEffect(()=> {
+    if(width > 640) {
+      setIsOpen(false)
+    }
+  }, [width])
+
   return (
     <>
       {
@@ -57,9 +87,11 @@ const Navbar = () => {
           </nav>
          
         ) : (
-          <nav className={`top-0 right-0 fixed bg-gray-50 w-full h-[35vw] p-10 ${isOpen ? 'translate-y-0' : 'translate-y-10'} ease-in-out duration-300`}>
-            <button className='text-black' onClick={() => setIsOpen(!isOpen)}>x</button>
-            <h2 className='text-2xl text-black'>The sidebar</h2>
+          <nav className={`tablet:hidden top-0 right-0 fixed bg-black text-white w-full h-[35vw] p-4 z-50 ${isOpen ? 'translate-y-0 ease duration-300' : 'translate-y-10 ease duration-300'}`}> 
+            <NavbarOptionsPhones
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
+            />
           </nav>
         )
       } 
