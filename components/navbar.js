@@ -21,7 +21,7 @@ const NavbarOptions = () => (
 
 const NavbarOptionsPhones = ({ setIsOpen, isOpen }) => (
   <ul className='tablet:hidden phone:flex-row justify-around pt-1 text-white text-sm'>
-    <div className='border border-white rounded-full w-6 h-6 flex justify-center items-center'>
+    <div className='border border-white rounded-full w-6 h-6 flex justify-center items-center mb-3'>
       <button onClick={() => setIsOpen(!isOpen)}>x</button>
     </div>
     <li className='my-1'>
@@ -78,7 +78,7 @@ const Navbar = () => {
     <>
       {
         !isOpen ? (
-          <nav className='fixed p-3 w-full h-15 flex-auto'>
+          <nav className='fixed p-3 w-full h-15 flex-auto bg-black'>
             <NavbarOptions /> 
             <HamburguerOptions
               setIsOpen={setIsOpen}

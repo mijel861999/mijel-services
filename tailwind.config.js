@@ -13,7 +13,8 @@ module.exports = {
     },
     colors: {
       'black': '#333',
-      'white': '#d6d6d6'
+      'white': '#d6d6d6',
+      'green': '#465902'
     },
     extend: {
       spacing: {
